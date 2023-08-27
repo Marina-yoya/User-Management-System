@@ -30,6 +30,15 @@ class UserManagement {
         return null;
     }
 
+   
+        public function getAllUsers() {
+            $sql = "SELECT * FROM user";
+            $users = $this->database->read($sql);
+    
+            return $users;
+        }
+    
+
     public function updateUser($id, $username, $email, $role) {
         $sql = "UPDATE user SET username = ?, email = ?, role = ? WHERE id = ?";
         $params = [$username, $email, $role, $id];

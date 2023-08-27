@@ -49,3 +49,50 @@ select option {
     color: #333;
     padding: 55px;
 }
+
+.container-users {
+    
+    width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f7f7f7;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+.actions {
+    display: flex;  
+} 
+
+
+button:hover {
+    background-color: #0056b3;
+}
+
+button[name="edit_user"] {
+    background-color: #ffc107;
+}
+
+button[name="delete_user"] {
+    background-color: #dc3545;
+}
