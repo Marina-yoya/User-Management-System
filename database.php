@@ -11,9 +11,7 @@ class Database
     {
         $this->host = $host;
         $this->username = $username;
-
         $this->dbname = $dbname;
-
         $this->connect();
     }
 
@@ -22,23 +20,53 @@ class Database
         try {
             $this->connection = new PDO("mysql:host=$this->host;dbname=$this->dbname", $this->username);
             $this->connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            
         } catch (PDOException $e) {
             die("Connection failed: " . $e->getMessage());
         }
     }
 
-    public function query($sql)
+    public function create($sql, $params = [])
     {
-        return $this->connection->query($sql);
+        try {
+            $stmt = $this->connection->prepare($sql);
+            $stmt->execute($params);
+            return $this->connection->lastInsertId();
+        } catch (PDOException $e) {
+            die("Creation failed: " . $e->getMessage()); 
+        }
     }
 
-    public function execute($sql, $params = [])
+    public function read($sql, $params = [])
     {
         $stmt = $this->connection->prepare($sql);
         $stmt->execute($params);
-        return $stmt;
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function update($sql, $params = [])
+    {
+        try {
+            $stmt = $this->connection->prepare($sql);
+            $stmt->execute($params);
+            return true;
+        } catch (PDOException $e) {
+            return false;
+        }
+    }
+
+    public function delete($sql, $params = [])
+    {
+        try {
+            $stmt = $this->connection->prepare($sql);
+            $stmt->execute($params);
+            return true;
+        } catch (PDOException $e) {
+            return false;
+        }
     }
 }
+
+
+
 
 ?>

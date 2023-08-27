@@ -1,3 +1,8 @@
+
+<?php
+require_once 'userManagement.php'; 
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,7 +12,7 @@
 <body>
     <div class="container">
         <h1>User Management</h1>
-        <form action="" method="POST">
+        <form action="userPage.php" method="POST">
             <label for="username">Username:</label>
             <input type="text" name="username" id="username" required>
             
@@ -22,6 +27,9 @@
             
             <button type="submit" name="add_user">Add User</button>
         </form>
+        <?php if (isset($message)) { ?>
+            <p><?php echo $message; ?></p>
+        <?php } ?>
     </div>
 </body>
 </html>
