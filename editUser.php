@@ -1,34 +1,6 @@
 <?php
 require_once 'userManagement.php';
 
-if (isset($_GET['user_id'])) {
-    $userId = $_GET['user_id'];
-    $user = $userManagement->getUserById($userId);
-
-    if ($user) {
-        $username = $user['username'];
-        $email = $user['email'];
-        $role = $user['role'];
-    } else {
-        $message = "User not found.";
-    }
-}
-
-if (isset($_POST['update_user'])) {
-    $updatedUsername = $_POST['username'];
-    $updatedEmail = $_POST['email'];
-    $updatedRole = $_POST['role'];
-
-    $updateSuccess = $userManagement->updateUser($userId, $updatedUsername, $updatedEmail, $updatedRole);
-
-    if ($updateSuccess) {
-        header("Location: allUsers.php");
-        exit();
-
-    } else {
-        $message = "Failed to update user.";
-    }
-}
 ?>
 
 <!DOCTYPE html>

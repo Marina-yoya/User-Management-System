@@ -91,6 +91,46 @@ if (isset($_POST['add_user'])) {
 }
 
 
+if (isset($_GET['user_id'])) {
+    $userId = $_GET['user_id'];
+    $user = $userManagement->getUserById($userId);
+
+    if ($user) {
+        $username = $user['username'];
+        $email = $user['email'];
+        $role = $user['role'];
+    } else {
+        $message = "User not found.";
+    }
+}
+
+if (isset($_POST['update_user'])) {
+    $updatedUsername = $_POST['username'];
+    $updatedEmail = $_POST['email'];
+    $updatedRole = $_POST['role'];
+
+    $updateSuccess = $userManagement->updateUser($userId, $updatedUsername, $updatedEmail, $updatedRole);
+
+    if ($updateSuccess) {
+        header("Location: allUsers.php");
+        exit();
+
+    } else {
+        $message = "Failed to update user.";
+    }
+}
+
+if (isset($_POST['delete_user'])) {
+    $userIdToDelete = $_POST['user_id'];
+    $deleteMessage = $userManagement->deleteUserById($userIdToDelete);
+} elseif (isset($_POST['edit_user'])) {
+
+    $userIdToEdit = $_POST['user_id'];
+    header("Location: editUser.php?user_id=$userIdToEdit");
+    exit();
+}
+
+
 
 
 ?>

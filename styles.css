@@ -7,6 +7,7 @@ body {
     margin: 0;
     background-color: #f0f0f0;
 }
+
 .container {
     width: 400px;
     padding: 20px;
@@ -14,11 +15,13 @@ body {
     border-radius: 5px;
     background-color: #f7f7f7;
 }
+
 label {
     display: block;
     margin-bottom: 5px;
     font-weight: bold;
 }
+
 input[type="text"] {
     width: 100%;
     padding: 8px;
@@ -26,6 +29,7 @@ input[type="text"] {
     border: 1px solid #ccc;
     border-radius: 3px;
 }
+
 button {
     padding: 8px 12px;
     background-color: #007bff;
@@ -35,6 +39,28 @@ button {
     cursor: pointer;
 }
 
+.button-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.users {
+    padding: 8px 12px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.user-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
 
 select {
     width: 100%;
@@ -51,7 +77,7 @@ select option {
 }
 
 .container-users {
-    
+
     width: 800px;
     margin: 0 auto;
     padding: 20px;
@@ -70,7 +96,8 @@ table {
     border-collapse: collapse;
 }
 
-th, td {
+th,
+td {
     border: 1px solid #ccc;
     padding: 8px;
     text-align: left;
@@ -81,8 +108,8 @@ th {
 }
 
 .actions {
-    display: flex;  
-} 
+    display: flex;
+}
 
 
 button:hover {
