@@ -50,12 +50,12 @@ $users = $userManagement->getAllUsers();
                     </tr>
                 <?php } ?>
         </table>
+        <?php if (isset($deleteMessage)) { ?>
+            <p>
+                <?php echo $deleteMessage; ?>
+            </p>
+        <?php } ?>
     </div>
-    <?php if (isset($deleteMessage)) { ?>
-        <p>
-            <?php echo $deleteMessage; ?>
-        </p>
-    <?php } ?>
     </div>
 </body>
 

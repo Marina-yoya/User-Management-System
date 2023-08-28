@@ -76,19 +76,42 @@ class UserManagement
 $database = new Database($host, $username, $dbname);
 $userManagement = new UserManagement($database);
 
-if (isset($_POST['add_user'])) {
+
+    if (isset($_POST['add_user'])) {
     $newUsername = $_POST['username'];
     $newEmail = $_POST['email'];
     $newRole = $_POST['role'];
 
-    $operationSuccess = $userManagement->addUser($newUsername, $newEmail, $newRole);
+    $errors = array();
 
-    if ($operationSuccess) {
-        $message = "New user added successfully.";
-    } else {
-        $message = "Failed to add new user.";
+    if (empty($newUsername)) {
+        $errors[] = "Username is required";
+    }
+
+    if (empty($newEmail)) {
+        $errors[] = "Email is required";
+    } elseif (!filter_var($newEmail, FILTER_VALIDATE_EMAIL)) {
+        $errors[] = "Invalid email format";
+    }
+
+    if (empty($newRole)) {
+        $errors[] = "Role is required";
+    }
+
+    if (empty($errors)) {
+        
+        $operationSuccess = $userManagement->addUser($newUsername, $newEmail, $newRole);
+
+        if ($operationSuccess) {
+            $message = "New user added successfully";
+        } else {
+            $message = "Failed to add new user";
+        }
     }
 }
+
+
+
 
 
 if (isset($_GET['user_id'])) {

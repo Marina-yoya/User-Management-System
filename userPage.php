@@ -1,5 +1,6 @@
 <?php
 require_once 'userManagement.php';
+
 ?>
 
 <!DOCTYPE html>
@@ -13,7 +14,7 @@ require_once 'userManagement.php';
 <body>
     <div class="container">
         <h1>User Management</h1>
-        <form action="userPage.php" method="POST">
+        <form action="userPage.php" method="POST" novalidate>
             <label for="username">Username:</label>
             <input type="text" name="username" id="username" required>
 
@@ -32,11 +33,21 @@ require_once 'userManagement.php';
 
         </form>
 
-        <?php if (isset($message)) { ?>
+        <?php if (isset($errors) && !empty($errors)) { ?>
+            <div class="error-container">
+                <ul>
+                    <?php foreach ($errors as $error) { ?>
+                        <li><?php echo $error; ?></li>
+                    <?php } ?>
+                </ul>
+            </div>
+        <?php } elseif (isset($message)) { ?>
             <p>
                 <?php echo $message; ?>
             </p>
         <?php } ?>
+        
+
     </div>
 </body>
 

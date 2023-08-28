@@ -123,3 +123,8 @@ button[name="edit_user"] {
 button[name="delete_user"] {
     background-color: #dc3545;
 }
+
+.error-container ul {
+    list-style: none;
+    padding-left: 0;
+}
