@@ -29,13 +29,28 @@ require_once 'userManagement.php';
                     echo 'selected'; ?>>Admin</option>
             </select>
 
-            <button type="submit" name="update_user">Update User</button>
+            <div class="button-container">
+                <button type="submit" name="update_user">Update User</button>
+                <a href="allUsers.php" class="users">All Users</a>
+            </div>
+
         </form>
-        <?php if (isset($message)) { ?>
+        <?php if (!empty($errors)) { ?>
+            <div class="error-container">
+                <ul>
+                    <?php foreach ($errors as $error) { ?>
+                        <li>
+                            <?php echo $error; ?>
+                        </li>
+                    <?php } ?>
+                </ul>
+            </div>
+        <?php } elseif (isset($message)) { ?>
             <p>
                 <?php echo $message; ?>
             </p>
         <?php } ?>
+
     </div>
 </body>
 

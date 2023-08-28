@@ -77,7 +77,7 @@ $database = new Database($host, $username, $dbname);
 $userManagement = new UserManagement($database);
 
 
-    if (isset($_POST['add_user'])) {
+if (isset($_POST['add_user'])) {
     $newUsername = $_POST['username'];
     $newEmail = $_POST['email'];
     $newRole = $_POST['role'];
@@ -99,7 +99,7 @@ $userManagement = new UserManagement($database);
     }
 
     if (empty($errors)) {
-        
+
         $operationSuccess = $userManagement->addUser($newUsername, $newEmail, $newRole);
 
         if ($operationSuccess) {
@@ -109,9 +109,6 @@ $userManagement = new UserManagement($database);
         }
     }
 }
-
-
-
 
 
 if (isset($_GET['user_id'])) {
@@ -132,16 +129,32 @@ if (isset($_POST['update_user'])) {
     $updatedEmail = $_POST['email'];
     $updatedRole = $_POST['role'];
 
-    $updateSuccess = $userManagement->updateUser($userId, $updatedUsername, $updatedEmail, $updatedRole);
+    if (empty($updatedUsername)) {
+        $errors[] = "Username is required";
+    }
 
-    if ($updateSuccess) {
-        header("Location: allUsers.php");
-        exit();
+    if (empty($updatedEmail)) {
+        $errors[] = "Email is required";
+    } elseif (!filter_var($updatedEmail, FILTER_VALIDATE_EMAIL)) {
+        $errors[] = "Invalid email format";
+    }
 
-    } else {
-        $message = "Failed to update user.";
+    if (empty($updatedRole)) {
+        $errors[] = "Role is required";
+    }
+
+    if (empty($errors)) {
+        $updateSuccess = $userManagement->updateUser($userId, $updatedUsername, $updatedEmail, $updatedRole);
+
+        if ($updateSuccess) {
+            $message = "User updated successfully";
+        } else {
+            $message = "Failed to update user.";
+        }
     }
 }
+
+
 
 if (isset($_POST['delete_user'])) {
     $userIdToDelete = $_POST['user_id'];
