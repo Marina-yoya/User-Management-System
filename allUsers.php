@@ -2,7 +2,10 @@
 require_once 'userManagement.php';
 
 $users = $userManagement->getAllUsers();
-
+if (isset($_POST['delete_user'])) {
+    $userIdToDelete = $_POST['user_id'];
+    $deleteMessage = $userManagement->deleteUserById($userIdToDelete);
+}
 ?>
 
 <!DOCTYPE html>
@@ -37,7 +40,7 @@ $users = $userManagement->getAllUsers();
                     </td>
                     <td>
                    
-                    <form action="userManagement.php" method="post">
+                    <form action="allUsers.php" method="post">
                 <input type="hidden" name="user_id" value="<?php echo $user['user_id']; ?>">
                 <button type="submit" name="edit_user">Edit</button>
                 <button type="submit" name="delete_user">Delete</button>
@@ -46,6 +49,9 @@ $users = $userManagement->getAllUsers();
                 </tr>
             <?php } ?>
         </table>
+        <?php if (isset($deleteMessage)) { ?>
+            <p><?php echo $deleteMessage; ?></p>
+        <?php } ?>
     </div>
 </body>
 
