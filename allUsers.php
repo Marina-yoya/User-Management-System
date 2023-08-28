@@ -5,6 +5,11 @@ $users = $userManagement->getAllUsers();
 if (isset($_POST['delete_user'])) {
     $userIdToDelete = $_POST['user_id'];
     $deleteMessage = $userManagement->deleteUserById($userIdToDelete);
+} elseif (isset($_POST['edit_user'])) {
+    
+    $userIdToEdit = $_POST['user_id'];
+    header("Location: editUser.php?user_id=$userIdToEdit");
+    exit();
 }
 ?>
 

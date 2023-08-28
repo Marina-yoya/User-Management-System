@@ -50,6 +50,7 @@ class Database
             $stmt->execute($params);
             return true;
         } catch (PDOException $e) {
+            echo "Update failed: " . $e->getMessage();
             return false;
         }
     }

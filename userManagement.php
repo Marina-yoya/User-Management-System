@@ -45,9 +45,10 @@ class UserManagement
 
     public function updateUser($id, $username, $email, $role)
     {
-        $sql = "UPDATE user SET username = ?, email = ?, role = ? WHERE id = ?";
+        $sql = "UPDATE user SET username = ?, email = ?, role = ? WHERE user_id = ?";
         $params = [$username, $email, $role, $id];
         return $this->database->update($sql, $params);
+
     }
 
 
